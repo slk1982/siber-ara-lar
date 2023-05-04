@@ -1,0 +1,14 @@
+import subprocess
+
+def ping_sweep(ip_range):
+    """Verilen IP aralýðýndaki tüm cihazlarý taramak için ICMP ping kullanýr"""
+    for i in range(1, 255):
+        ip = ip_range + str(i)
+        result = subprocess.call(['ping', '-c', '1', '-w', '500', ip])
+        if result == 0:
+            print(ip + ' is up')
+        else:
+            print(ip + ' is down')
+
+ping_sweep('192.168.1.')
+Bu kod, verilen IP aralýðýndaki tüm cihazlarý taramak için ICMP ping kullanýr. ping_sweep fonksiyonu, belirtilen IP aralýðýna göre bir döngü oluþturur ve her IP adresi için bir ICMP ping isteði gönderir. Eðer cihaz yanýt verirse, "is up" mesajý görüntülenir. Eðer yanýt vermezse, "is down" mesajý görüntülenir. Bu araç, aðda hangi cihazlarýn etkin olduðunu belirlemek için kullanýlabilir ve að güvenliði açýsýndan faydalý olabilir.
